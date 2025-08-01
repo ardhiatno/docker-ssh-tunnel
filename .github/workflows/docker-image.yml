@@ -13,6 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: login to docker hub
+      id: docker-hub
+      env:
+        username: ${{secrets.DOCKERHUB_USERNAME}}
+        password: ${{secrets.DOCKERHUB_PASSWORD}}
+      run: |
+        docker login -u $username -p $password 
     - uses: actions/checkout@v4
     - name: Build the Docker image
-      run: make build
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USERNAME}}/docker-ssh-tunnel:latest
+    - name: push the docker image
+      id: push-docker-image
+      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/docker-ssh-tunnel:latest
