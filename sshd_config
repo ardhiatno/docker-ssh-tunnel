@@ -1,0 +1,8 @@
+Port 2222
+PermitRootLogin no
+PasswordAuthentication no
+ChallengeResponseAuthentication no
+AllowUsers tunnel
+AuthorizedKeysFile /home/tunnel/.ssh/authorized_keys
+HostKey /home/tunnel/.ssh/id_ed25519
+LogLevel INFO

@@ -1,0 +1,12 @@
+services:
+  ssh-tunnel:
+    container_name: ssh-tunnel
+    restart: always
+    image: ssh-tunnel
+    environment:
+      TUNNEL_AUTHORIZED_KEYS: |
+        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIo21jeou1wdo12he12ho12heo1udho1uwo test1
+    ports:
+      - 2222:2222
+    networks:
+      - internal-universe
